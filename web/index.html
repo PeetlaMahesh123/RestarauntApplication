@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Order Management</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app-shell">
+    <header class="hero">
+        <div>
+            <p class="eyebrow">Modern Bistro</p>
+            <h1>Restaurant Order Desk</h1>
+            <p class="subtitle">Curate vibrant table-side experiences with a tactile dashboard.</p>
+        </div>
+        <div class="server-pill">
+            <span class="dot"></span>
+            <span id="serverStatus">Connecting...</span>
+        </div>
+    </header>
+
+    <main class="layout">
+        <section class="panel menu-panel">
+            <div class="panel-header">
+                <h2>Seasonal Menu</h2>
+                <div id="categoryTabs" class="tabs"></div>
+            </div>
+            <div id="menuGrid" class="menu-grid"></div>
+        </section>
+
+        <section class="panel order-panel">
+            <div class="panel-header split">
+                <h2>Live Order</h2>
+                <button id="resetOrder" class="ghost-btn">Clear Cart</button>
+            </div>
+
+            <div class="order-meta">
+                <label>
+                    <span>Table</span>
+                    <input id="tableInput" type="text" placeholder="A1" value="A1" />
+                </label>
+                <label>
+                    <span>Notes</span>
+                    <textarea id="notesInput" rows="2" placeholder="Allergies, plating requests..."></textarea>
+                </label>
+            </div>
+
+            <div class="order-cart">
+                <div class="cart-header">
+                    <span>Item</span>
+                    <span>Qty</span>
+                    <span>Price</span>
+                </div>
+                <div id="cartItems" class="cart-items"></div>
+            </div>
+
+            <div class="summary">
+                <div>
+                    <span>Subtotal</span>
+                    <strong id="subtotalLabel">$0.00</strong>
+                </div>
+                <div>
+                    <span>Tax (8%)</span>
+                    <strong id="taxLabel">$0.00</strong>
+                </div>
+                <div class="total">
+                    <span>Due</span>
+                    <strong id="totalLabel">$0.00</strong>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="placeOrder" class="primary-btn">Send to Kitchen</button>
+            </div>
+        </section>
+
+        <section class="panel history-panel">
+            <div class="panel-header split">
+                <h2>Recent Orders</h2>
+                <button id="refreshHistory" class="ghost-btn">Refresh</button>
+            </div>
+            <div id="historyList" class="history-list"></div>
+        </section>
+    </main>
+</div>
+
+<template id="menuCardTemplate">
+    <article class="menu-card">
+        <div class="card-body">
+            <h3></h3>
+            <p></p>
+        </div>
+        <div class="card-footer">
+            <span class="price"></span>
+            <button class="primary-btn tiny">Add</button>
+        </div>
+    </article>
+</template>
+
+<template id="cartRowTemplate">
+    <div class="cart-row">
+        <div class="info">
+            <strong class="name"></strong>
+            <small class="desc"></small>
+        </div>
+        <div class="qty-controls">
+            <button class="circle-btn" data-action="decrement">-</button>
+            <span class="qty"></span>
+            <button class="circle-btn" data-action="increment">+</button>
+        </div>
+        <div class="line-total"></div>
+    </div>
+</template>
+
+<template id="historyItemTemplate">
+    <div class="history-item">
+        <div>
+            <strong class="title"></strong>
+            <p class="details"></p>
+        </div>
+        <span class="badge"></span>
+    </div>
+</template>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="app.js" type="module"></script>
+</body>
+</html>
+
+

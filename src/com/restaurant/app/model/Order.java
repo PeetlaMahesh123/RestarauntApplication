@@ -75,6 +75,18 @@ public class Order {
         }
     }
 
+    public void addItem(MenuItem menuItem, int quantity) {
+        Optional<OrderItem> existing = items.stream()
+            .filter(item -> item.getMenuItem().getCode().equals(menuItem.getCode()))
+            .findFirst();
+
+        if (existing.isPresent()) {
+            existing.get().increaseQuantity(quantity);
+        } else {
+            items.add(new OrderItem(menuItem, Math.max(1, quantity)));
+        }
+    }
+
     public void remove(MenuItem menuItem) {
         items.removeIf(item -> item.getMenuItem().getCode().equals(menuItem.getCode()));
     }
